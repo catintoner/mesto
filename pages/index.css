@@ -10,7 +10,8 @@
 }
 
 .container {
-
+  max-width: calc(100% - 200px*2);
+  margin: 0 auto;
   font-family: 'Inter', Arial, sans-serif;
   color: #fff;
   -webkit-font-smoothing: antialiased;
@@ -20,3 +21,14 @@
   -moz-text-size-adjust: 100%;
 }
 
+
+.header {
+  margin: 0 0 40px;
+  padding: 45px 0 0;
+  max-width: 100%;
+  border-bottom: 1px solid #545454;
+}
+
+.header__logo {
+  padding: 0 0 41px 0;
+}
