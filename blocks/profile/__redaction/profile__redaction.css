@@ -1,16 +1,11 @@
 .profile__redaction {
   align-self: center;
-  background-color: black;
-  background-image: url('../../../images/redaction.png');
-  background-position: center;
-  background-size: initial;
-  background-repeat: no-repeat;
   border: 1px solid white;
-  padding: 0;
+  padding: 7px;
   margin: 0;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: 10px;
+  height: 10px;
   transition: .2s;
 }
 
@@ -22,8 +17,9 @@
 @media screen and (max-width: 539px) {
 
   .profile__redaction {
-    width: 18px;
-    height: 18px;
+    padding: 5.25px;
+    width: 7.5px;
+    height: 7.5px;
     grid-area: 1/4/1/5;
   }
 }

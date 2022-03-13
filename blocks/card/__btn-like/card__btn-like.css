@@ -2,11 +2,16 @@
   margin: 0 0 0 auto;
   width: 22px;
   height: 19px;
-  border: none;
   cursor: pointer;
-  background-color: white;
-  background-image: url('../../../images/Like_disabled.png');
   transition: .2s;
+}
+
+.like_disabled {
+  background-image: url("../../../images/Like_disabled.png");
+}
+
+.like_enabled {
+  background-image: url("../../../images/Like_enabled.png");
 }
 
 .card__btn-like:hover {
