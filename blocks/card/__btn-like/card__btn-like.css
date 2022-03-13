@@ -1,0 +1,15 @@
+.card__btn-like {
+  margin: 0 0 0 auto;
+  width: 22px;
+  height: 19px;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  background-image: url('../../../images/Like_disabled.png');
+  transition: .2s;
+}
+
+.card__btn-like:hover {
+  transition: .2s;
+  opacity: .6;
+}
