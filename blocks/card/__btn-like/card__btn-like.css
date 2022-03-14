@@ -4,6 +4,9 @@
   height: 19px;
   cursor: pointer;
   transition: .2s;
+  background-image: url("../../../images/Like_disabled.png");
+  background-color: white;
+  border: none;
 }
 
 .like_disabled {
