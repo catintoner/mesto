@@ -4,20 +4,11 @@
   height: 19px;
   cursor: pointer;
   transition: .2s;
-  background-image: url("../../../images/Like_disabled.png");
+  background-image: url("../../../images/Like_disabled.svg");
   background-color: white;
   border: none;
 }
 
-.like_disabled {
-  background-image: url("../../../images/Like_disabled.png");
-}
-
-.like_enabled {
-  background-image: url("../../../images/Like_enabled.png");
-}
-
 .card__btn-like:hover {
-  transition: .2s;
   opacity: .6;
 }
