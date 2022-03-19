@@ -10,7 +10,6 @@
 }
 
 .profile__redaction:hover {
-  transition: .2s;
   opacity: .6;
 }
 
