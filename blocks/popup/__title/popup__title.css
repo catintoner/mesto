@@ -10,6 +10,7 @@
 @media screen and (max-width: 767px) {
 
   .popup__title {
+    padding-top: 25px;
     width: calc(100% - 22px*2);
     margin: 0 auto 75px;
     grid-area: auto;
