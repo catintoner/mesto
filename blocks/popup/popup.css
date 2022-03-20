@@ -12,21 +12,29 @@
   width: 100%;
   height: 100%;
   display: none;
-  grid-template-columns: 1fr min-content 1fr;
+  grid-template-columns: 1fr minmax(350px, 33.5%) 1fr;
   grid-template-rows: repeat(2, min-content);
   align-content: center;
+  justify-content: center;
   align-items: center;
   justify-items: center;
 }
 
 .popup::before {
-    display: block;
-    content: '';
-    position: fixed;
-    background-color: rgba(0, 0, 0, .5);
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
+  display: block;
+  content: '';
+  position: fixed;
+  background-color: rgba(0, 0, 0, .5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+@media screen and (max-width: 767px) {
+
+  .popup {
+    grid-template-columns: minmax(282px, 88.1%);
+  }
 }

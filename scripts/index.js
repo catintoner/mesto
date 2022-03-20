@@ -1,35 +1,38 @@
-// Реализация открытия/закрытия popUp
-
-let redact = document.querySelector('.profile__redaction');
-let popUp = document.querySelector('.popup');
+let profileEdit = document.querySelector('.profile__redaction');
+let popup = document.querySelector('.popup');
 let popUpExit = document.querySelector('.popup__exit');
-
-function PopUp() {
-  nameInput.value = profileName.textContent.trim();
-  jobInput.value = profileJob.textContent.trim();
-  popUp.classList.toggle('popup_opened');
-}
-
-redact.addEventListener('click', PopUp);
-popUpExit.addEventListener('click', PopUp);
-
-// Реализация отображения и изменения данных в профиле
-
+let profileName = document.querySelector('.profile__name');
+let profileJob = document.querySelector('.profile__about');
 let formElement = document.forms['profile-edit'];
 let nameInput = formElement.name;
 let jobInput = formElement.job;
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__about');
+
+//func for open and add value in Input
+
+function popupOpen() {
+  nameInput.value = profileName.textContent.trim();
+  jobInput.value = profileJob.textContent.trim();
+  popup.classList.add('popup_opened');
+}
+
+//func for close
+
+function popupClose() {
+  popup.classList.remove('popup_opened');
+}
+
+//Listen for open/close
+
+profileEdit.addEventListener('click', popupOpen);
+popUpExit.addEventListener('click', popupClose);
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
+
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  // Получите значение полей jobInput и nameInput из свойства value
   let name = nameInput.value;
   let job = jobInput.value;
-  // Выберите элементы, куда должны быть вставлены значения полей
-  // Вставьте новые значения с помощью textContent
   profileName.textContent = name;
   profileJob.textContent = job;
 }
@@ -37,4 +40,5 @@ function formSubmitHandler(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', popupClose);
 
