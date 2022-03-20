@@ -5,9 +5,9 @@ let popUp = document.querySelector('.popup');
 let popUpExit = document.querySelector('.popup__exit');
 
 function PopUp() {
-  popUp.classList.toggle('popup_opened');
   nameInput.value = profileName.textContent.trim();
   jobInput.value = profileJob.textContent.trim();
+  popUp.classList.toggle('popup_opened');
 }
 
 redact.addEventListener('click', PopUp);
@@ -15,12 +15,11 @@ popUpExit.addEventListener('click', PopUp);
 
 // Реализация отображения и изменения данных в профиле
 
-let formElement = document.querySelector('.popup__container');
-let nameInput = formElement.querySelector('.popup__name-input');
-let jobInput = formElement.querySelector('.popup__job-input');
+let formElement = document.forms['profile-edit'];
+let nameInput = formElement.name;
+let jobInput = formElement.job;
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__about');
-
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
