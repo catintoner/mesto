@@ -1,7 +1,7 @@
 .profile__info {
   flex-basis: 40%;
   display: grid;
-  grid-template-columns: 88% 1fr;
+  grid-template-columns: 84% 1fr;
   grid-template-rows: repeat(2, min-content);
   grid-gap: 16px 18px;
 }
