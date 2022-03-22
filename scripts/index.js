@@ -35,10 +35,10 @@ function formSubmitHandler(evt) {
   let job = jobInput.value;
   profileName.textContent = name;
   profileJob.textContent = job;
+  popupClose();
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
-formElement.addEventListener('submit', popupClose);
 
