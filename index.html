@@ -105,7 +105,7 @@
 
   </div>
 
-  <section class="popup">
+  <section class="popup popup_type_edit-profile">
     <button class="popup__exit" type="button">
     </button>
     <form class="popup__container" name="profile-edit">
@@ -114,6 +114,21 @@
       </h3>
       <input class="popup__input" id="profile-name" name="name" type="text" placeholder="Имя">
       <input class="popup__input" id="profile-job" name="job" type="text" placeholder="О себе">
+      <button class="popup__submit-btn" type="submit">
+        Сохранить
+      </button>
+    </form>
+  </section>
+
+  <section class="popup popup_type_add-card">
+    <button class="popup__exit" type="button">
+    </button>
+    <form class="popup__container" name="profile-edit">
+      <h3 class="popup__title">
+        Новое место
+      </h3>
+      <input class="popup__input" id="place" name="place" type="text" placeholder="Название">
+      <input class="popup__input" id="picture-link" name="picture-link" type="text" placeholder="Ссылка на картинку">
       <button class="popup__submit-btn" type="submit">
         Сохранить
       </button>
