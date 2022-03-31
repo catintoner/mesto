@@ -12,6 +12,8 @@ const templateCard = document.querySelector('#template__card').content;         
 const cardsPlace = document.querySelector('.cards');
 const nameInput = formEditProfile.name;
 const jobInput = formEditProfile.job;
+const namePlace = formAddCard.place;
+const linkPlace = formAddCard.link;
 const initialCards = [
   {
     name: 'Роза Хутор',
@@ -48,18 +50,35 @@ function addSixCards() {
     let card = templateCard.querySelector('.card').cloneNode(true);
     card.querySelector('.card__photo').src = initialCards[i].link;
     card.querySelector('.card__title').textContent = initialCards[i].name;
-    card.querySelector('.card__trash').addEventListener('click', deleteCard);
+    card.querySelector('.card__btn-like').addEventListener('click', () => {
+      card.querySelector('.card__btn-like').classList.toggle('card__btn-like_status_active')
+    });
+    card.querySelector('.card__trash').addEventListener('click', () => {
+      card.remove()
+    });
     cardsPlace.append(card);
   }
 };
 
-//func for deleteCard
+function addCard(evt) {
+  evt.preventDefault();
+  let card = templateCard.querySelector('.card').cloneNode(true);
+  card.querySelector('.card__photo').src = linkPlace.value;
+  card.querySelector('.card__title').textContent = namePlace.value;
+  card.querySelector('.card__btn-like').addEventListener('click', () => {
+    card.querySelector('.card__btn-like').classList.toggle('card__btn-like_status_active')
+  });
+  card.querySelector('.card__trash').addEventListener('click', () => {
+    card.remove()
+  });
+  linkPlace.value = "";
+  namePlace.value = "";
+  cardsPlace.prepend(card);
+  closePopUp(popUpAddCard);
 
-function deleteCard(i) {
-  let card = document.querySelector('.card');
-  card.remove();
 }
 
+//func for addCard
 
 // deleteCardButton.addEventListener('click', deleteCard);
 //func for open and add value in formEditProfile
@@ -73,6 +92,7 @@ function fillFieldsAndOpenPopUp(popUp) {
 // func for open
 
 function openPopUp(popUp) {
+
   popUp.classList.add('popup_opened');
 }
 
@@ -104,4 +124,4 @@ function formSubmitHandler(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formEditProfile.addEventListener('submit', formSubmitHandler);
-
+formAddCard.addEventListener('submit', addCard);
