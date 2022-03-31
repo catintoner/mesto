@@ -1,8 +1,9 @@
 const profileEdit = document.querySelector('.profile__redaction');              //buttons
 const addCardButton = document.querySelector('.profile__add-button');
-const deleteCardButton = document.querySelectorAll('.card__trash');
+// const deleteCardButton = document.querySelectorAll('.card__trash');
 const popUpAddCard = document.querySelector('.popup_type_add-card');            //popUps
 const popUpEditProfile = document.querySelector('.popup_type_edit-profile');
+const popUpPicture = document.querySelector('.popup_type_picture');
 const popUpExit = document.querySelectorAll('.popup__exit');                    //exitPopUps
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
@@ -17,7 +18,7 @@ const linkPlace = formAddCard.link;
 const initialCards = [
   {
     name: 'Роза Хутор',
-    link: 'https://images.unsplash.com/photo-1617117833203-c91b04e0431f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
+    link: 'https://images.unsplash.com/photo-1617117833203-c91b04e0431f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1744&q=80'
   },
   {
     name: 'Цимлянское водохранилище',
@@ -25,7 +26,7 @@ const initialCards = [
   },
   {
     name: 'Г. Волгоград',
-    link: 'https://images.unsplash.com/photo-1613863501971-ccb1757e40ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
+    link: 'https://images.unsplash.com/photo-1613863501971-ccb1757e40ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1635&q=80'
   },
   {
     name: 'Кабардино-Балкарская Республика',
@@ -37,7 +38,7 @@ const initialCards = [
   },
   {
     name: 'Река Учма',
-    link: 'https://images.unsplash.com/photo-1625729273155-25ed107d68be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
+    link: 'https://images.unsplash.com/photo-1625729273155-25ed107d68be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1635&q=80'
   },
 ];
 
@@ -56,6 +57,10 @@ function addSixCards() {
     card.querySelector('.card__trash').addEventListener('click', () => {
       card.remove()
     });
+    card.querySelector('.card__photo').addEventListener('click', function() {
+      document.querySelector('.popup__image').src = card.querySelector('.card__photo').src;
+      openPopUp(popUpPicture);
+    });
     cardsPlace.append(card);
   }
 };
@@ -70,6 +75,10 @@ function addCard(evt) {
   });
   card.querySelector('.card__trash').addEventListener('click', () => {
     card.remove()
+  });
+  card.querySelector('.card__photo').addEventListener('click', function() {
+    document.querySelector('.popup__image').src = card.querySelector('.card__photo').src;
+    openPopUp(popUpPicture);
   });
   linkPlace.value = "";
   namePlace.value = "";
@@ -96,6 +105,9 @@ function openPopUp(popUp) {
   popUp.classList.add('popup_opened');
 }
 
+//func for popupPicture
+
+
 //func for close
 
 function closePopUp(popUpClose) {
@@ -104,10 +116,11 @@ function closePopUp(popUpClose) {
 
 //Listen for open/close
 
-profileEdit.addEventListener('click', () => fillFieldsAndOpenPopUp(popUpEditProfile));
-addCardButton.addEventListener('click', () => openPopUp(popUpAddCard))
-popUpExit[0].addEventListener('click', () => closePopUp(popUpEditProfile));
-popUpExit[1].addEventListener('click', () => closePopUp(popUpAddCard));
+profileEdit.addEventListener('click', ()    => fillFieldsAndOpenPopUp(popUpEditProfile));
+addCardButton.addEventListener('click', ()  => openPopUp(popUpAddCard))
+popUpExit[0].addEventListener('click', ()   => closePopUp(popUpEditProfile));
+popUpExit[1].addEventListener('click', ()   => closePopUp(popUpAddCard));
+popUpExit[2].addEventListener('click', ()   => closePopUp(popUpPicture));
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -125,3 +138,10 @@ function formSubmitHandler(evt) {
 // он будет следить за событием “submit” - «отправка»
 formEditProfile.addEventListener('submit', formSubmitHandler);
 formAddCard.addEventListener('submit', addCard);
+
+
+// document.querySelector('.card__photo').addEventListener('click', function() {
+//   document.querySelector('.popup__image').src = document.querySelector('.card__photo').src;
+//   openPopUp(popUpPicture);
+// })
+
