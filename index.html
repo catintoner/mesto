@@ -32,7 +32,7 @@
       </section>
 
       <section class="cards">
-        <article class="card">
+        <!-- <article class="card">
           <img class="card__photo" src="./images/Rosa_Hutor.jpg" alt="Роза Хутор">
           <div class="card__info">
             <h2 class="card__title">
@@ -93,7 +93,7 @@
             <button class="card__btn-like" type="button">
             </button>
           </div>
-        </article>
+        </article> -->
       </section>
     </main>
 
@@ -123,7 +123,7 @@
   <section class="popup popup_type_add-card">
     <button class="popup__exit" type="button">
     </button>
-    <form class="popup__container" name="profile-edit">
+    <form class="popup__container" name="add-card">
       <h3 class="popup__title">
         Новое место
       </h3>
@@ -134,6 +134,20 @@
       </button>
     </form>
   </section>
+
+  <template id="template__card">
+    <article class="card">
+      <img class="card__photo" src="" alt="">
+      <div class="card__info">
+        <h2 class="card__title">
+        </h2>
+        <button class="card__btn-like" type="button">
+        </button>
+      </div>
+      <button class="card__trash" type="button">
+      </button>
+    </article>
+  </template>
 
   <script src="./scripts/index.js">
   </script>
