@@ -60,6 +60,7 @@ function addSixCards() {
     card.querySelector('.card__photo').addEventListener('click', function() {
       document.querySelector('.popup__image').src = card.querySelector('.card__photo').src;
       openPopUp(popUpPicture);
+      document.querySelector('.popup__caption').textContent = card.querySelector('.card__title').textContent;
     });
     cardsPlace.append(card);
   }
