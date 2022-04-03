@@ -3,6 +3,8 @@ const cardButtonAdd = document.querySelector('.profile__add-button');
 const popUpAddCard = document.querySelector('.popup_type_add-card');            //popUps
 const popUpEditProfile = document.querySelector('.popup_type_edit-profile');
 const popUpPicture = document.querySelector('.popup_type_picture');
+const imagePopUp = popUpPicture.querySelector('.popup__image');
+const namePopUp = popUpPicture.querySelector('.popup__caption');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 const formEditProfile = document.forms['profile-edit'];                         //forms
@@ -82,11 +84,9 @@ function cleanValueAndOpenPopUp(popUp) {
 //func for open popup picture
 
 function openPopUpPicture(evt) {
-  const image = document.querySelector('.popup__image');
-  const name = document.querySelector('.popup__caption');
-  image.src = evt.target.src;
-  image.alt = evt.target.alt;
-  name.textContent = evt.target.closest('.card').querySelector('.card__title').textContent;
+  imagePopUp.src = evt.target.src;
+  imagePopUp.alt = evt.target.alt;
+  namePopUp.textContent = evt.target.closest('.card').querySelector('.card__title').textContent;
   openPopUp(popUpPicture);
   addEventOnClose(popUpPicture);
 }
