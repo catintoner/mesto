@@ -154,16 +154,16 @@ function addOneCard(evt) {
   closePopUp(evt);
 }
 
-//func for add sixCards
+//func for add arrayCards
 
-function addSixCards() {
+function addArrayCards() {
   for (let i = 0; i < initialCards.length; i++) {
-    const sixCards = addCards(initialCards[i].link, initialCards[i].name);
-    cardsPlace.append(sixCards);
+    const someCards = addCards(initialCards[i].link, initialCards[i].name);
+    cardsPlace.append(someCards);
   }
 };
 
-addSixCards();
+addArrayCards();
 
 //Listen for open/close popups
 
