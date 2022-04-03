@@ -1,5 +1,5 @@
 const profileEdit = document.querySelector('.profile__redaction');              //buttons
-const addCardButton = document.querySelector('.profile__add-button');
+const cardButtonAdd = document.querySelector('.profile__add-button');
 const popUpAddCard = document.querySelector('.popup_type_add-card');            //popUps
 const popUpEditProfile = document.querySelector('.popup_type_edit-profile');
 const popUpPicture = document.querySelector('.popup_type_picture');
@@ -168,7 +168,7 @@ addSixCards();
 //Listen for open/close popups
 
 profileEdit.addEventListener('click', ()    => fillFieldsAndOpenPopUp(popUpEditProfile));
-addCardButton.addEventListener('click', ()  => cleanValueAndOpenPopUp(popUpAddCard));
+cardButtonAdd.addEventListener('click', ()  => cleanValueAndOpenPopUp(popUpAddCard));
 
 //listen forms
 
