@@ -59,9 +59,32 @@ function closePopUp(evt) {
 function addEventOnClose(popUp) {
   const popUpExit = popUp.querySelector('.popup__exit');
   if (popUp) {
+    document.addEventListener('keydown', closeOnEsc);
     popUpExit.addEventListener('click', closePopUp);
+    closeOnOverlay(popUp);
   }
 }
+
+//func for close popup on ESC
+
+function closeOnEsc(evt) {
+  const popUpOpened = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    popUpOpened.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeOnEsc);
+    }
+  }
+
+//func for close popup on Overlay
+
+  function closeOnOverlay(popUp) {
+    const popUpOpened = document.querySelector('.popup_opened');
+    popUpOpened.addEventListener('click', (evt) => {
+      if (evt.target === popUp) {
+        popUpOpened.classList.remove('popup_opened');
+      }
+    });
+  }
 
 //func for open and add value in formEditProfile
 
@@ -75,8 +98,7 @@ function fillFieldsAndOpenPopUp(popUp) {
 //func for open and clean value in addCard
 
 function cleanValueAndOpenPopUp(popUp) {
-  linkPlace.value = "";
-  namePlace.value = "";
+  formAddCard.reset();
   openPopUp(popUp);
   addEventOnClose(popUp);
 }
@@ -174,3 +196,5 @@ cardButtonAdd.addEventListener('click', ()  => cleanValueAndOpenPopUp(popUpAddCa
 
 formEditProfile.addEventListener('submit', formSubmitHandler);
 formAddCard.addEventListener('submit', addOneCard);
+
+
