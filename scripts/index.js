@@ -79,7 +79,7 @@ function closeOnEsc(evt) {
 
   function closeOnOverlay(popUp) {
     const popUpOpened = document.querySelector('.popup_opened');
-    popUpOpened.addEventListener('click', (evt) => {
+    popUpOpened.addEventListener('mousedown', (evt) => {
       if (evt.target === popUp) {
         popUpOpened.classList.remove('popup_opened');
       }

@@ -1,4 +1,5 @@
 .popup__container {
+  max-width: 460px;
   width: 100%;
   background-color: white;
   display: flex;
@@ -13,5 +14,6 @@
 
   .popup__container {
     grid-area: unset;
+    max-width: 100%;
   }
 }

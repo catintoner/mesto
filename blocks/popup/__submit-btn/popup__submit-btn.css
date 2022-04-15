@@ -14,7 +14,7 @@
   cursor: pointer;
 }
 
-.popup__submit-btn:hover {
+.popup__submit-btn:not([disabled]):hover {
   background-color: rgba(0, 0, 0, .8);
 }
 

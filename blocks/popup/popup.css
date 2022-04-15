@@ -12,7 +12,7 @@
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr minmax(350px, 33.5%) 1fr;
+  grid-template-columns: 1fr minmax(350px, 460px) 1fr;
   grid-template-rows: repeat(2, min-content);
   align-content: center;
   justify-content: center;

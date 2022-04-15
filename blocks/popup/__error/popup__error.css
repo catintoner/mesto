@@ -1,0 +1,19 @@
+.popup__error {
+  width: calc(100% - 36px*2);
+  margin: 0 auto 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  color: red;
+
+}
+
+.popup__error:last-of-type {
+  margin: 0 auto 31px;
+}
