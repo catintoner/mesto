@@ -46,12 +46,41 @@ const initialCards = [
 
 function openPopUp(popUp) {
   popUp.classList.add('popup_opened');
+  enableValidation({
+    formSelector: '.popup__container',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-btn',
+    inactiveButtonClass: 'popup__submit-btn_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: '.popup__error'
+  });
 }
 
 //func for close popUp
 
 function closePopUp(evt) {
   evt.target.closest('.popup').classList.remove('popup_opened');
+}
+
+//func for close popup on ESC
+
+function closeOnEsc(evt) {
+  if (evt.key === 'Escape') {
+    const popUpOpened = document.querySelector('.popup_opened');
+    popUpOpened.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeOnEsc);
+  }
+}
+
+//func for close popup on Overlay
+
+function closeOnOverlayClick(popUp) {
+  const popUpOpened = document.querySelector('.popup_opened');
+  popUpOpened.addEventListener('mousedown', (evt) => {
+    if (evt.target === popUp) {
+      popUpOpened.classList.remove('popup_opened');
+    }
+  });
 }
 
 //func for listen for close popup
@@ -61,30 +90,9 @@ function addEventOnClose(popUp) {
   if (popUp) {
     document.addEventListener('keydown', closeOnEsc);
     popUpExit.addEventListener('click', closePopUp);
-    closeOnOverlay(popUp);
+    closeOnOverlayClick(popUp);
   }
 }
-
-//func for close popup on ESC
-
-function closeOnEsc(evt) {
-  const popUpOpened = document.querySelector('.popup_opened');
-  if (evt.key === 'Escape') {
-    popUpOpened.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closeOnEsc);
-    }
-  }
-
-//func for close popup on Overlay
-
-  function closeOnOverlay(popUp) {
-    const popUpOpened = document.querySelector('.popup_opened');
-    popUpOpened.addEventListener('mousedown', (evt) => {
-      if (evt.target === popUp) {
-        popUpOpened.classList.remove('popup_opened');
-      }
-    });
-  }
 
 //func for open and add value in formEditProfile
 
@@ -189,12 +197,10 @@ addArrayCards();
 
 //Listen for open/close popups
 
-profileEdit.addEventListener('click', ()    => fillFieldsAndOpenPopUp(popUpEditProfile));
-cardButtonAdd.addEventListener('click', ()  => cleanValueAndOpenPopUp(popUpAddCard));
+profileEdit.addEventListener('click', () => fillFieldsAndOpenPopUp(popUpEditProfile));
+cardButtonAdd.addEventListener('click', () => cleanValueAndOpenPopUp(popUpAddCard));
 
 //listen forms
 
 formEditProfile.addEventListener('submit', formSubmitHandler);
 formAddCard.addEventListener('submit', addOneCard);
-
-
