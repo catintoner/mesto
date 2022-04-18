@@ -1,6 +1,6 @@
 .popup__error {
   width: calc(100% - 36px*2);
-  margin: 0 auto 13px;
+  margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
@@ -11,9 +11,16 @@
   font-weight: 400;
   line-height: 14.52px;
   color: red;
-
+  height: 30px;
 }
 
 .popup__error:last-of-type {
-  margin: 0 auto 31px;
+  height: 48px;
+}
+
+@media screen and (max-width: 767px) {
+
+  .popup__error {
+    width: calc(100% - 22px*2);
+  }
 }

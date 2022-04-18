@@ -13,7 +13,6 @@
 @media screen and (max-width: 767px) {
 
   .popup__container {
-    grid-area: unset;
     max-width: 100%;
   }
 }
