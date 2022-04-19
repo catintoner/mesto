@@ -215,3 +215,5 @@ popUps.forEach((popUp) => {
   addEventOnClose(popUp);
   closeOnOverlayClick(popUp);
 })
+
+
