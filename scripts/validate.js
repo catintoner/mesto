@@ -1,7 +1,6 @@
 //invalidInput
 
-function hasInvalidInput(formSelector, selectors) {
-  const inputList = Array.from(formSelector.querySelectorAll(selectors.inputSelector));
+function hasInvalidInput(inputList) {
   return inputList.some((inputSelector) => {
     return !inputSelector.validity.valid;
   });
@@ -9,14 +8,13 @@ function hasInvalidInput(formSelector, selectors) {
 
 //button enable/disable
 
-function toggleButtonState(formSelector, selectors) {
-  const buttonSelector = formSelector.querySelector(selectors.submitButtonSelector);
-  if (hasInvalidInput(formSelector, selectors)) {
-    buttonSelector.setAttribute("disabled", "true");
-    buttonSelector.classList.add(selectors.inactiveButtonClass);
+function toggleButtonState(inputList, buttonSelector, inactiveButtonClass) {
+  if (hasInvalidInput(inputList)) {
+    buttonSelector.setAttribute('disabled', 'true');
+    buttonSelector.classList.add(inactiveButtonClass);
   } else {
-    buttonSelector.removeAttribute("disabled");
-    buttonSelector.classList.remove(selectors.inactiveButtonClass);
+    buttonSelector.removeAttribute('disabled');
+    buttonSelector.classList.remove(inactiveButtonClass);
   };
 }
 
@@ -45,19 +43,20 @@ function checkInputValidity(formSelector, inputSelector, selectors) {
   } else {
     hideInputError(formSelector, inputSelector, selectors);
   };
-  toggleButtonState(formSelector, selectors);
 }
 
 //setEventListener
 
 function setEventListeners(formSelector, selectors) {
   const inputList = Array.from(formSelector.querySelectorAll(selectors.inputSelector));
+  const buttonSelector = formSelector.querySelector(selectors.submitButtonSelector);
   inputList.forEach((inputSelector) => {
     inputSelector.addEventListener('input', () => {
       checkInputValidity(formSelector, inputSelector, selectors);
+      toggleButtonState(inputList, buttonSelector, selectors.inactiveButtonClass);
     });
   });
-  toggleButtonState(formSelector, selectors);
+  toggleButtonState(inputList, buttonSelector, selectors.inactiveButtonClass);
 }
 
 //func for validation

@@ -80,9 +80,7 @@ function closeOnOverlayClick(popUp) {
 
 function addEventOnClose(popUp) {
   const popUpExit = popUp.querySelector('.popup__exit');
-  if (popUp) {
-    popUpExit.addEventListener('click', () => closePopUp(popUp));
-  }
+  popUpExit.addEventListener('click', () => closePopUp(popUp));
 }
 
 //func for open and add value in formEditProfile
@@ -90,13 +88,31 @@ function addEventOnClose(popUp) {
 function fillFieldsAndOpenPopUp(popUp) {
   nameInput.value = profileName.textContent.trim();
   jobInput.value = profileJob.textContent.trim();
+  enableButtonState(popUp);
   openPopUp(popUp);
+}
+
+//disable submit-button
+
+function disableButtonState(popUp) {
+  const buttonState = popUp.querySelector('.popup__submit-btn');
+  buttonState.setAttribute('disabled', 'true');
+  buttonState.classList.add('popup__submit-btn_disabled');
+}
+
+// enable submit-button
+
+function enableButtonState(popUp) {
+  const buttonState = popUp.querySelector('.popup__submit-btn');
+  buttonState.removeAttribute('disabled');
+  buttonState.classList.remove('popup__submit-btn_disabled');
 }
 
 //func for open and clean value in addCard
 
 function cleanValueAndOpenPopUp(popUp) {
   formAddCard.reset();
+  disableButtonState(popUp);
   openPopUp(popUp);
 }
 
@@ -113,11 +129,12 @@ function openPopUpPicture(evt) {
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
+  const popUpOpened = document.querySelector('.popup_opened');
   const name = nameInput.value;
   const job = jobInput.value;
   profileName.textContent = name;
   profileJob.textContent = job;
-  closePopUp(evt);
+  closePopUp(popUpOpened);
 }
 
 //func for like
@@ -168,8 +185,9 @@ function addCards(link, name) {
 function addOneCard(evt) {
   evt.preventDefault();
   const oneCard = addCards(linkPlace.value, namePlace.value);
+  const popUpOpened = document.querySelector('.popup_opened');
   cardsPlace.prepend(oneCard);
-  closePopUp(evt);
+  closePopUp(popUpOpened);
 }
 
 //func for add arrayCards
