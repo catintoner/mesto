@@ -2,15 +2,10 @@ const profileEdit = document.querySelector('.profile__redaction');              
 const cardButtonAdd = document.querySelector('.profile__add-button');
 const popUpAddCard = document.querySelector('.popup_type_add-card');            //popUps
 const popUpEditProfile = document.querySelector('.popup_type_edit-profile');
-const popUpPicture = document.querySelector('.popup_type_picture');
-const imagePopUp = popUpPicture.querySelector('.popup__image');
-const namePopUp = popUpPicture.querySelector('.popup__caption');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 const formEditProfile = document.forms['profile-edit'];                         //forms
 const formAddCard = document.forms['add-card'];
-const templateCard = document.querySelector('#template__card').content;         //template
-const cardsPlace = document.querySelector('.cards');
 const nameInput = formEditProfile.name;
 const jobInput = formEditProfile.job;
 const namePlace = formAddCard.place;
@@ -43,9 +38,11 @@ const initialCards = [
   },
 ];
 
+import { Card } from "./card.js";
+
 // func for open popUp
 
-function openPopUp(popUp) {
+export function openPopUp(popUp) {
   popUp.classList.add('popup_opened');
   document.addEventListener('keydown', closeOnEsc);
 }
@@ -116,15 +113,6 @@ function cleanValueAndOpenPopUp(popUp) {
   openPopUp(popUp);
 }
 
-//func for open popup picture
-
-function openPopUpPicture(evt) {
-  imagePopUp.src = evt.target.src;
-  imagePopUp.alt = evt.target.alt;
-  namePopUp.textContent = evt.target.closest('.card').querySelector('.card__title').textContent;
-  openPopUp(popUpPicture);
-}
-
 //func for edit profile
 
 function formSubmitHandler(evt) {
@@ -137,73 +125,40 @@ function formSubmitHandler(evt) {
   closePopUp(popUpOpened);
 }
 
-//func for like
-
-function addRemoveLike(evt) {
-  evt.target.classList.toggle('card__btn-like_status_active');
-}
-
-//func for removeCard
-
-function removeCard(evt) {
-  const card = evt.target.closest('.card');
-  if (card) {
-    card.remove();
-  };
-}
-
-//func addEventOnCard
-
-function addEventOnCard(card) {
-  const btnLike = card.querySelector('.card__btn-like');
-  if (btnLike) {
-    btnLike.addEventListener('click', addRemoveLike);
-  };
-  const trash = card.querySelector('.card__trash');
-  if (trash) {
-    trash.addEventListener('click', removeCard);
-  };
-  const image = card.querySelector('.card__photo');
-  if (image) {
-    image.addEventListener('click', openPopUpPicture);
-  }
-}
-
 //func for addCards
 
-function addCards(link, name) {
-  const card = templateCard.querySelector('.card').cloneNode(true);
-  card.querySelector('.card__photo').src = link;
-  card.querySelector('.card__photo').alt = name;
-  card.querySelector('.card__title').textContent = name;
-  addEventOnCard(card);
-  return card;
+function addCards(name, link, cardSelector) {
+  const card = new Card(name, link, cardSelector);
+  const cardElement = card.generateCard();
+  return cardElement;
+};
+
+//func for add arrayCards
+
+function addArrayCards(object) {
+  const cardsPlace = document.querySelector('.cards');
+  object.forEach(item => {
+    const card = addCards(item.name, item.link, '#template__card');
+    cardsPlace.append(card);
+  });
 }
+
+addArrayCards(initialCards);
 
 //func for add one card
 
 function addOneCard(evt) {
   evt.preventDefault();
-  const oneCard = addCards(linkPlace.value, namePlace.value);
+  const cardsPlace = document.querySelector('.cards');
+  const oneCard = addCards(namePlace.value, linkPlace.value);
   const popUpOpened = document.querySelector('.popup_opened');
   cardsPlace.prepend(oneCard);
   closePopUp(popUpOpened);
 }
 
-//func for add arrayCards
-
-function addArrayCards() {
-  for (let i = 0; i < initialCards.length; i++) {
-    const someCards = addCards(initialCards[i].link, initialCards[i].name);
-    cardsPlace.append(someCards);
-  }
-};
-
-addArrayCards();
-
 //Listen for open/close popups
 
-profileEdit.addEventListener('click', () => fillFieldsAndOpenPopUp(popUpEditProfile));
+profileEdit.addEventListener('click',   () => fillFieldsAndOpenPopUp(popUpEditProfile));
 cardButtonAdd.addEventListener('click', () => cleanValueAndOpenPopUp(popUpAddCard));
 
 //listen forms
@@ -215,5 +170,3 @@ popUps.forEach((popUp) => {
   addEventOnClose(popUp);
   closeOnOverlayClick(popUp);
 })
-
-
