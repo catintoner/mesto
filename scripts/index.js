@@ -39,6 +39,7 @@ const initialCards = [
 ];
 
 import { Card } from "./card.js";
+import { FormValidator } from "./formValidator.js";
 
 // func for open popUp
 
@@ -150,7 +151,7 @@ addArrayCards(initialCards);
 function addOneCard(evt) {
   evt.preventDefault();
   const cardsPlace = document.querySelector('.cards');
-  const oneCard = addCards(namePlace.value, linkPlace.value);
+  const oneCard = addCards(namePlace.value, linkPlace.value, '#template__card');
   const popUpOpened = document.querySelector('.popup_opened');
   cardsPlace.prepend(oneCard);
   closePopUp(popUpOpened);
@@ -170,3 +171,26 @@ popUps.forEach((popUp) => {
   addEventOnClose(popUp);
   closeOnOverlayClick(popUp);
 })
+
+
+const formEdit = new FormValidator({
+    formSelector: '.popup__container',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-btn',
+    inactiveButtonClass: 'popup__submit-btn_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: '.popup__error'
+  }, '[name=profile-edit]');
+
+  formEdit.enableValidation();
+
+  const cardAdd = new FormValidator({
+    formSelector: '.popup__container',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-btn',
+    inactiveButtonClass: 'popup__submit-btn_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: '.popup__error'
+  }, '[name=add-card]');
+
+  cardAdd.enableValidation();
