@@ -6,8 +6,9 @@ export class Section {
   }
 
   renderItems() {
-    this._renderedItems.forEach(item => {
-      this._renderer(item);
+    this._renderedItems.reverse().forEach(item => {
+      this.addItem(this._renderer(item));
+      // this._container.append(this._renderer(item));
     });
   }
 
@@ -15,10 +16,3 @@ export class Section {
     this._container.prepend(element);
   }
 }
-
-
-function addCards(name, link, cardSelector) {
-  const card = new Card(name, link, cardSelector, openPopupPicture);
-  const cardElement = card.generateCard();
-  return cardElement;
-};

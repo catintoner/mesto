@@ -27,6 +27,7 @@ import { profileEdit,
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from '../components/Section.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
 
 // func for open popUp
 
@@ -100,35 +101,28 @@ function formSubmitHandler(evt) {
 
 //func for addCards
 
-function addCards(name, link, cardSelector) {
-  const card = new Card(name, link, cardSelector, openPopupPicture);
+const addCards = new Section({ items: initialCards, renderer: addOneCard }, '.cards');
+
+//func for add one card
+
+function addOneCard(item) {
+  const card = new Card({ data: item }, '#template__card', openPopupPicture);
   const cardElement = card.generateCard();
   return cardElement;
 };
 
-//func for add arrayCards
+addCards.renderItems();
 
-function addArrayCards(object) {
-  object.forEach(item => {
-    const card = addCards(item.name, item.link, '#template__card');
-    cardsPlace.append(card);
-  });
-}
+//card from form
 
-// function renderer( { name, link }, cardSelector ) {
-//   const card = new Card(name, link, cardSelector)
-
-
-addArrayCards(initialCards);
-
-//func for add one card
-
-function addOneCard(evt) {
+function addCardFromForm(evt) {
   evt.preventDefault();
-  const oneCard = addCards(namePlace.value, linkPlace.value, '#template__card');
-  cardsPlace.prepend(oneCard);
+  const newCardValues = { name: namePlace.value, link: linkPlace.value};
+  const oneCard = addOneCard(newCardValues);
+  addCards.addItem(oneCard);
   closePopup(popupAddCard);
 }
+
 
 //Listen for open/close popups
 
@@ -138,7 +132,7 @@ cardButtonAdd.addEventListener('click', () => cleanValueAndOpenPopup(popupAddCar
 //listen forms
 
 formEditProfile.addEventListener('submit', formSubmitHandler);
-formAddCard.addEventListener('submit', addOneCard);
+formAddCard.addEventListener('submit', addCardFromForm);
 
 popups.forEach((popup) => {
   closeOnOverlayAndBtnExit(popup);
