@@ -1,15 +1,11 @@
-const profileEdit = document.querySelector('.profile__redaction');              //buttons
+const profileEdit = document.querySelector('.profile__redaction');
 const cardButtonAdd = document.querySelector('.profile__add-button');
-const popups = Array.from(document.querySelectorAll('.popup'));                 //popups
-const popupAddCard = document.querySelector('.popup_type_add-card');
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupPicture = document.querySelector('.popup_type_picture');
 const imagePopup = popupPicture.querySelector('.popup__image');
 const namePopup = popupPicture.querySelector('.popup__caption');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
-const cardsPlace = document.querySelector('.cards');
-const formEditProfile = document.forms['profile-edit'];                         //forms
+const formEditProfile = document.forms['profile-edit'];
 const formAddCard = document.forms['add-card'];
 const nameInput = formEditProfile.name;
 const jobInput = formEditProfile.job;
@@ -52,15 +48,10 @@ const objForValidity = {
 
 export { profileEdit,
          cardButtonAdd,
-         popups,
-         popupAddCard,
-         popupEditProfile,
-         popupPicture,
          imagePopup,
          namePopup,
          profileName,
          profileJob,
-         cardsPlace,
          formEditProfile,
          formAddCard,
          nameInput,
@@ -68,4 +59,5 @@ export { profileEdit,
          namePlace,
          linkPlace,
          initialCards,
-         objForValidity };
+         objForValidity
+        };

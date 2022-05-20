@@ -1,10 +1,10 @@
-export class Card {
+export default class Card {
 
-  constructor({ data }, cardSelector, openPopupPicture) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor({ name, link }, cardSelector, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._cardSelector = cardSelector;
-    this._openPopupPicture = openPopupPicture
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -12,22 +12,20 @@ export class Card {
     return cardElement;
   }
 
-  _addRemoveLike() {
-    this._like.classList.toggle('card__btn-like_status_active');
+  _addRemoveLike(evt) {
+    evt.target.classList.toggle('card__btn-like_status_active');
   }
 
   _setEventListeners() {
     this._like = this._cardElement.querySelector('.card__btn-like');
-    this._like.addEventListener('click', () => {
-      this._addRemoveLike();
-    });
+    this._like.addEventListener('click', this._addRemoveLike.bind(this));
     this._cardElement.querySelector('.card__trash').addEventListener('click', () => {
       this._cardElement.remove();
       this._cardElement = null;
     });
-    this._cardImage.addEventListener('click', () => {
-      this._openPopupPicture(this._name, this._link);
-    })
+    this._cardElement.addEventListener('click', (evt) => {
+      this._handleCardClick(evt, { name: this._name, link: this._link });
+    });
   }
 
   generateCard() {

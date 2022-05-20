@@ -1,4 +1,4 @@
-export class Section {
+export default class Section {
   constructor({ items, renderer }, containerSelector) {
     this._renderedItems = items;
     this._renderer = renderer;
@@ -8,7 +8,6 @@ export class Section {
   renderItems() {
     this._renderedItems.reverse().forEach(item => {
       this.addItem(this._renderer(item));
-      // this._container.append(this._renderer(item));
     });
   }
 
