@@ -1,5 +1,7 @@
 //imports
 
+import '../pages/index.css';
+
 //const
 
 import {
