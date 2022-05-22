@@ -1,6 +1,6 @@
 //imports
 
-// import '../pages/index.css';
+import '../pages/index.css';
 
 //const
 
