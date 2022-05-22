@@ -4,8 +4,6 @@ const formEditProfile = document.forms['profile-edit'];
 const formAddCard = document.forms['add-card'];
 const nameInput = formEditProfile.name;
 const jobInput = formEditProfile.job;
-const namePlace = formAddCard.place;
-const linkPlace = formAddCard.link;
 const initialCards = [
   {
     name: 'Роза Хутор',
@@ -47,8 +45,6 @@ export { profileEdit,
          formAddCard,
          nameInput,
          jobInput,
-         namePlace,
-         linkPlace,
          initialCards,
          objForValidity
         };

@@ -1,6 +1,6 @@
 //imports
 
-import '../pages/index.css';
+// import '../pages/index.css';
 
 //const
 
@@ -11,8 +11,6 @@ import {
   formAddCard,
   nameInput,
   jobInput,
-  namePlace,
-  linkPlace,
   initialCards,
   objForValidity
 } from '../utils/constants.js';
@@ -76,11 +74,12 @@ function handleProfileFormSubmit(data) {
 
 //card from form
 
-function addCardFromForm() {
-  const newCardValues = { name: namePlace.value, link: linkPlace.value };
-  const oneCard = addOneCard(newCardValues);
+function addCardFromForm(data) {
+  const oneCard = addOneCard(data);
   addCards.addItem(oneCard);
 }
+
+
 
 //func for add one card
 
