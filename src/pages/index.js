@@ -26,15 +26,29 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
+
+const formProfileEdit = new PopupWithForm('.popup_type_edit-profile', handleProfileFormSubmit);
+formProfileEdit.setEventListeners();
+
+const formAdd = new PopupWithForm('.popup_type_add-card', addCardFromForm);
+formAdd.setEventListeners();
+
+const handleCardClick = new PopupWithImage('.popup_type_picture');
+handleCardClick.setEventListeners();
+
+
 const userInfo = new UserInfo({ nameSelector: nameInput, jobSelector: jobInput });
 
-//func for open and add value in formEditProfile
+//func`s for open and add value in formEditProfile
+
+function addUserInfoInForm({ name, job }) {
+  nameInput.value = name;
+  jobInput.value = job;
+}
 
 function openEditProfile() {
-  const profileEdit = new PopupWithForm('.popup_type_edit-profile', formSubmitHandler);
-  profileEdit.setEventListeners();
-  profileEdit.openPopup();
-  userInfo.getUserInfo();
+  formProfileEdit.openPopup();
+  addUserInfoInForm(userInfo.getUserInfo());
   formEdit.resetValidation();
 
 }
@@ -42,23 +56,27 @@ function openEditProfile() {
 //func for open addCardForm
 
 function openAddCardForm() {
-  const formAdd = new PopupWithForm('.popup_type_add-card', addCardFromForm);
-  formAdd.setEventListeners();
   formAdd.openPopup();
   cardAdd.resetValidation();
 }
 
+// func for open popup picture
+
+function openPopupPicture(evt, data) {
+  if (evt.target.classList.contains('card__photo')) {
+    handleCardClick.openPopup(data);
+  }
+}
+
 //func for edit profile
 
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  userInfo.setUserInfo();
+function handleProfileFormSubmit(data) {
+  userInfo.setUserInfo(data);
 }
 
 //card from form
 
-function addCardFromForm(evt) {
-  evt.preventDefault();
+function addCardFromForm() {
   const newCardValues = { name: namePlace.value, link: linkPlace.value };
   const oneCard = addOneCard(newCardValues);
   addCards.addItem(oneCard);
@@ -67,7 +85,7 @@ function addCardFromForm(evt) {
 //func for add one card
 
 function addOneCard(item) {
-  const card = new Card(item, '#template__card', handleCardClick);
+  const card = new Card(item, '#template__card', openPopupPicture);
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -92,12 +110,3 @@ formEdit.enableValidation();
 const cardAdd = new FormValidator(objForValidity, formAddCard);
 
 cardAdd.enableValidation();
-
-
-function handleCardClick(evt, data) {
-  if (evt.target.classList.contains('card__photo')) {
-    const handleCardClick = new PopupWithImage(data, '.popup_type_picture');
-    handleCardClick.openPopup();
-    handleCardClick.setEventListeners();
-  }
-}

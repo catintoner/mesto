@@ -1,10 +1,5 @@
 const profileEdit = document.querySelector('.profile__redaction');
 const cardButtonAdd = document.querySelector('.profile__add-button');
-const popupPicture = document.querySelector('.popup_type_picture');
-const imagePopup = popupPicture.querySelector('.popup__image');
-const namePopup = popupPicture.querySelector('.popup__caption');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__about');
 const formEditProfile = document.forms['profile-edit'];
 const formAddCard = document.forms['add-card'];
 const nameInput = formEditProfile.name;
@@ -44,14 +39,10 @@ const objForValidity = {
   inactiveButtonClass: 'popup__submit-btn_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: '.popup__error'
-}
+};
 
 export { profileEdit,
          cardButtonAdd,
-         imagePopup,
-         namePopup,
-         profileName,
-         profileJob,
          formEditProfile,
          formAddCard,
          nameInput,
