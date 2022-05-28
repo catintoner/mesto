@@ -10,7 +10,7 @@ import {
   formEditProfile,
   formAddCard,
   nameInput,
-  jobInput,
+  aboutInput,
   initialCards,
   objForValidity
 } from '../utils/constants.js';
@@ -23,6 +23,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 
 const formProfileEdit = new PopupWithForm('.popup_type_edit-profile', handleProfileFormSubmit);
@@ -35,13 +36,13 @@ const handleCardClick = new PopupWithImage('.popup_type_picture');
 handleCardClick.setEventListeners();
 
 
-const userInfo = new UserInfo({ nameSelector: nameInput, jobSelector: jobInput });
+const userInfo = new UserInfo({ nameSelector: nameInput, aboutSelector: aboutInput });
 
 //func`s for open and add value in formEditProfile
 
-function addUserInfoInForm({ name, job }) {
+function addUserInfoInForm({ name, about }) {
   nameInput.value = name;
-  jobInput.value = job;
+  aboutInput.value = about;
 }
 
 function openEditProfile() {
@@ -109,3 +110,22 @@ formEdit.enableValidation();
 const cardAdd = new FormValidator(objForValidity, formAddCard);
 
 cardAdd.enableValidation();
+
+
+//test request
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
+  headers: {
+    authorization: '1a2b710a-03a9-4348-9fbe-153973737ce6',
+    'Content-Type': 'application/json'
+  }
+});
+
+
+
+api.getInfoAboutUser()
+  .then((userStats) => {
+    userInfo.setUserInfo(userStats);
+  })
+

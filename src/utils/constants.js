@@ -3,7 +3,7 @@ const cardButtonAdd = document.querySelector('.profile__add-button');
 const formEditProfile = document.forms['profile-edit'];
 const formAddCard = document.forms['add-card'];
 const nameInput = formEditProfile.name;
-const jobInput = formEditProfile.job;
+const aboutInput = formEditProfile.about;
 const initialCards = [
   {
     name: 'Роза Хутор',
@@ -44,7 +44,7 @@ export { profileEdit,
          formEditProfile,
          formAddCard,
          nameInput,
-         jobInput,
+         aboutInput,
          initialCards,
          objForValidity
         };
