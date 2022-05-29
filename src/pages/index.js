@@ -11,7 +11,6 @@ import {
   formAddCard,
   nameInput,
   aboutInput,
-  initialCards,
   objForValidity
 } from '../utils/constants.js';
 
@@ -22,6 +21,7 @@ import FormValidator from "../components/FormValidator.js";
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithDeleteCard from '../components/PopupWithDeleteCard.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
@@ -31,6 +31,9 @@ formProfileEdit.setEventListeners();
 
 const formAdd = new PopupWithForm('.popup_type_add-card', addCardFromForm);
 formAdd.setEventListeners();
+
+const formDelete = new PopupWithDeleteCard('.popup_type_delete-card')
+formDelete.setEventListeners();
 
 const handleCardClick = new PopupWithImage('.popup_type_picture');
 handleCardClick.setEventListeners();
@@ -81,6 +84,14 @@ function handleProfileFormSubmit(data) {
   api.setInfoAboutUser(data);
 }
 
+function deleteCard() {
+
+}
+
+function openPopupDelete() {
+  formDelete.openPopup();
+}
+
 //card from form
 
 function addCardFromForm(data) {
@@ -95,7 +106,7 @@ function addCardFromForm(data) {
 //func for add one card
 
 function addOneCard(item) {
-  const card = new Card(item, '#template__card', openPopupPicture);
+  const card = new Card(item, '#template__card', openPopupPicture, openPopupDelete);
   const cardElement = card.generateCard();
   return cardElement;
 };
