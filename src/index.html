@@ -49,28 +49,12 @@
       <h3 class="popup__title">
         Редактировать профиль
       </h3>
-      <input class="popup__input"
-        id="profile-name"
-        name="name"
-        minlength="2"
-        maxlength="40"
-        type="text"
-        placeholder="Имя"
-        required
-        autocomplete="off"
-      >
+      <input class="popup__input" id="profile-name" name="name" minlength="2" maxlength="40" type="text"
+        placeholder="Имя" required autocomplete="off">
       <span class="popup__error profile-name-error">
       </span>
-      <input class="popup__input"
-        id="profile-about"
-        name="about"
-        minlength="2"
-        maxlength="200"
-        type="text"
-        placeholder="О себе"
-        required
-        autocomplete="off"
-        >
+      <input class="popup__input" id="profile-about" name="about" minlength="2" maxlength="200" type="text"
+        placeholder="О себе" required autocomplete="off">
       <span class="popup__error profile-about-error">
       </span>
       <button class="popup__submit-btn" type="submit">
@@ -86,26 +70,12 @@
       <h3 class="popup__title">
         Новое место
       </h3>
-      <input class="popup__input"
-        id="place"
-        name="name"
-        type="text"
-        minlength="2"
-        maxlength="30"
-        placeholder="Название"
-        required
-        autocomplete="off"
-        >
+      <input class="popup__input" id="place" name="name" type="text" minlength="2" maxlength="30" placeholder="Название"
+        required autocomplete="off">
       <span class="popup__error place-error">
       </span>
-      <input class="popup__input"
-        id="link"
-        name="link"
-        type="url"
-        placeholder="Ссылка на картинку"
-        required
-        autocomplete="off"
-        >
+      <input class="popup__input" id="link" name="link" type="url" placeholder="Ссылка на картинку" required
+        autocomplete="off">
       <span class="popup__error link-error">
       </span>
       <button class="popup__submit-btn" type="submit">
@@ -130,8 +100,13 @@
       <div class="card__info">
         <h2 class="card__title">
         </h2>
-        <button class="card__btn-like" type="button">
-        </button>
+        <div class="card__likes">
+          <button class="card__btn-like" type="button">
+          </button>
+          <p class="card__likes-counter">
+            6
+          </p>
+        </div>
       </div>
       <button class="card__trash" type="button">
       </button>

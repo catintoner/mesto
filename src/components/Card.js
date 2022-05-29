@@ -3,6 +3,7 @@ export default class Card {
   constructor(dataCard, cardSelector, handleCardClick) {
     this._name = dataCard.name;
     this._link = dataCard.link;
+    this._likesCounter = dataCard.likes;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -34,6 +35,7 @@ export default class Card {
 
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
+    this._cardElement.querySelector('.card__likes-counter').textContent = this._likesCounter.length;
     this._cardElement.querySelector('.card__title').textContent = this._name;
 
     this._setEventListeners();
