@@ -33,9 +33,9 @@ export default class Api {
     })
       .then(this._checkResponse)
 
-      .then(res => {
-        console.log(res);
-      })
+      // .then(res => {
+      //   console.log(res);
+      // })
   }
 
   addNewCard({ name, link }) {
@@ -50,9 +50,21 @@ export default class Api {
 
     .then(this._checkResponse)
 
-    .then(res => {
-      console.log(res);
+    // .then(res => {
+    //   console.log(res);
+    // })
+  }
+
+  getInfoAboutCard() {
+
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
     })
+    .then(this._checkResponse)
   }
 
 }

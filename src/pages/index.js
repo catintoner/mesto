@@ -32,7 +32,7 @@ formProfileEdit.setEventListeners();
 const formAdd = new PopupWithForm('.popup_type_add-card', addCardFromForm);
 formAdd.setEventListeners();
 
-const formDelete = new PopupWithDeleteCard('.popup_type_delete-card')
+const formDelete = new PopupWithDeleteCard('.popup_type_delete-card', deleteCard)
 formDelete.setEventListeners();
 
 const handleCardClick = new PopupWithImage('.popup_type_picture');
@@ -84,24 +84,28 @@ function handleProfileFormSubmit(data) {
   api.setInfoAboutUser(data);
 }
 
-function deleteCard() {
-
+function deleteCard(cardElement, cardId) {
+  api.deleteCard(cardId)
+    .then(() => {
+      cardElement.remove();
+      cardElement = null;
+    })
 }
 
-function openPopupDelete() {
-  formDelete.openPopup();
+function openPopupDelete(evt, cardId) {
+  formDelete.openPopup(evt, cardId);
 }
 
 //card from form
 
 function addCardFromForm(data) {
-  const oneCard = addOneCard(data);
-  const addCard = new Section({items: oneCard, renderer: addOneCard}, '.cards');
-  addCard.addItem(oneCard);
-  api.addNewCard(data);
+  api.addNewCard(data)
+    .then(cardInfo => {
+      const oneCard = addOneCard(cardInfo);
+      const addCard = new Section({ items: oneCard, renderer: addOneCard }, '.cards');
+      addCard.addItem(oneCard);
+    })
 }
-
-
 
 //func for add one card
 
@@ -130,9 +134,6 @@ cardAdd.enableValidation();
 //test request
 
 
-
-
-
 api.getInfoAboutUser()
   .then((userStats) => {
     userInfo.setUserInfo(userStats);
@@ -140,6 +141,8 @@ api.getInfoAboutUser()
   .catch((err) => {
     console.log(err);
   })
+
+
 
 api.getInitialCards()
   .then((arrayCards) => {
