@@ -110,7 +110,7 @@ function addCardFromForm(data) {
 //func for add one card
 
 function addOneCard(item) {
-  const card = new Card(item, '#template__card', openPopupPicture, openPopupDelete);
+  const card = new Card(item, '#template__card', openPopupPicture, openPopupDelete, api, userId);
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -133,10 +133,12 @@ cardAdd.enableValidation();
 
 //test request
 
+let userId
 
 api.getInfoAboutUser()
   .then((userStats) => {
     userInfo.setUserInfo(userStats);
+    userId = userStats._id;
   })
   .catch((err) => {
     console.log(err);
