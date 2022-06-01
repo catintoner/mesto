@@ -1,7 +1,10 @@
 const profileEdit = document.querySelector('.profile__redaction');
 const cardButtonAdd = document.querySelector('.profile__add-button');
+const avatarButton = document.querySelector('.profile__avatar-button');
+const avatar = document.querySelector('.profile__avatar');
 const formEditProfile = document.forms['profile-edit'];
 const formAddCard = document.forms['add-card'];
+const formEditAvatar = document.forms['edit-avatar'];
 const nameInput = formEditProfile.name;
 const aboutInput = formEditProfile.about;
 const initialCards = [
@@ -41,8 +44,11 @@ const objForValidity = {
 
 export { profileEdit,
          cardButtonAdd,
+         avatarButton,
+         avatar,
          formEditProfile,
          formAddCard,
+         formEditAvatar,
          nameInput,
          aboutInput,
          initialCards,

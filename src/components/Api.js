@@ -32,10 +32,6 @@ export default class Api {
       })
     })
       .then(this._checkResponse)
-
-    // .then(res => {
-    //   console.log(res);
-    // })
   }
 
   addNewCard({ name, link }) {
@@ -49,10 +45,6 @@ export default class Api {
     })
 
       .then(this._checkResponse)
-
-    // .then(res => {
-    //   console.log(res);
-    // })
   }
 
   deleteCard(cardId) {
@@ -81,4 +73,17 @@ export default class Api {
 
       .then(this._checkResponse)
   }
+
+  editAvatar({ avatar }) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: avatar
+      })
+    })
+
+      .then(this._checkResponse)
+  }
+
 }

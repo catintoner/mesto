@@ -7,8 +7,11 @@ import '../pages/index.css';
 import {
   profileEdit,
   cardButtonAdd,
+  avatarButton,
+  avatar,
   formEditProfile,
   formAddCard,
+  formEditAvatar,
   nameInput,
   aboutInput,
   objForValidity
@@ -32,6 +35,9 @@ formProfileEdit.setEventListeners();
 const formAdd = new PopupWithForm('.popup_type_add-card', addCardFromForm);
 formAdd.setEventListeners();
 
+const formAvatarEdit = new PopupWithForm('.popup_type_edit-avatar', handleAvatarSubmit);
+formAvatarEdit.setEventListeners();
+
 const formDelete = new PopupWithDeleteCard('.popup_type_delete-card', deleteCard)
 formDelete.setEventListeners();
 
@@ -48,6 +54,10 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
+let userId;
+
+
 //func`s for open and add value in formEditProfile
 
 function addUserInfoInForm({ name, about }) {
@@ -77,11 +87,23 @@ function openPopupPicture(evt, data) {
   }
 }
 
+function openPopupEditAvatar() {
+  formAvatarEdit.openPopup();
+  formAvatarValidity.resetValidation();
+}
+
 //func for edit profile
 
 function handleProfileFormSubmit(data) {
   userInfo.setUserInfo(data);
   api.setInfoAboutUser(data);
+}
+
+function handleAvatarSubmit(avatarLink) {
+  api.editAvatar(avatarLink)
+    .then(userInfo => {
+      avatar.src = userInfo.avatar;
+    })
 }
 
 function deleteCard(cardElement, cardId) {
@@ -119,26 +141,26 @@ function addOneCard(item) {
 
 profileEdit.addEventListener('click', openEditProfile);
 cardButtonAdd.addEventListener('click', openAddCardForm);
+avatarButton.addEventListener('click', openPopupEditAvatar);
 
 //listen forms
 
 const formEdit = new FormValidator(objForValidity, formEditProfile);
-
 formEdit.enableValidation();
 
 const cardAdd = new FormValidator(objForValidity, formAddCard);
-
 cardAdd.enableValidation();
 
+const formAvatarValidity = new FormValidator(objForValidity, formEditAvatar);
+formAvatarValidity.enableValidation();
 
 //test request
-
-let userId
 
 api.getInfoAboutUser()
   .then((userStats) => {
     userInfo.setUserInfo(userStats);
     userId = userStats._id;
+    avatar.src = userStats.avatar;
   })
   .catch((err) => {
     console.log(err);

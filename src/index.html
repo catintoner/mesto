@@ -15,7 +15,11 @@
 
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/Avatar.png')%>" alt="Аватарка">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="" alt="Аватарка">
+          <button class="profile__avatar-button" type="button">
+          </button>
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">
             <!-- Жак-Ив Кусто -->
@@ -103,6 +107,23 @@
       </h3>
       <button class="popup__submit-btn" type="submit">
         Удалить
+      </button>
+    </form>
+  </section>
+
+  <section class="popup popup_type_edit-avatar">
+    <button class="popup__exit" type="button">
+    </button>
+    <form class="popup__container" name="edit-avatar">
+      <h3 class="popup__title">
+        Обновить аватар
+      </h3>
+      <input class="popup__input" id="avatar" name="avatar" type="url" placeholder="Ссылка на картинку" required
+        autocomplete="off">
+      <span class="popup__error avatar-error">
+      </span>
+      <button class="popup__submit-btn" type="submit">
+        Сохранить
       </button>
     </form>
   </section>
