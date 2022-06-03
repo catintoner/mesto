@@ -57,9 +57,6 @@ const api = new Api({
 
 let userId;
 
-
-//func`s for open and add value in formEditProfile
-
 function addUserInfoInForm({ name, about }) {
   nameInput.value = name;
   aboutInput.value = about;
@@ -72,14 +69,10 @@ function openEditProfile() {
 
 }
 
-//func for open addCardForm
-
 function openAddCardForm() {
   formAdd.openPopup();
   cardAdd.resetValidation();
 }
-
-// func for open popup picture
 
 function openPopupPicture(evt, data) {
   if (evt.target.classList.contains('card__photo')) {
@@ -92,11 +85,12 @@ function openPopupEditAvatar() {
   formAvatarValidity.resetValidation();
 }
 
-//func for edit profile
-
 function handleProfileFormSubmit(data) {
   userInfo.setUserInfo(data);
-  api.setInfoAboutUser(data);
+  api.setInfoAboutUser(data)
+    .finally(() => {
+      formProfileEdit.closePopup();
+    })
 }
 
 function handleAvatarSubmit(avatarLink) {
@@ -104,21 +98,32 @@ function handleAvatarSubmit(avatarLink) {
     .then(userInfo => {
       avatar.src = userInfo.avatar;
     })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      formAvatarEdit.closePopup();
+    })
 }
 
 function deleteCard(cardElement, cardId) {
+  formDelete.isDeleting(true)
   api.deleteCard(cardId)
     .then(() => {
       cardElement.remove();
       cardElement = null;
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      formDelete.closePopup();
     })
 }
 
 function openPopupDelete(evt, cardId) {
   formDelete.openPopup(evt, cardId);
 }
-
-//card from form
 
 function addCardFromForm(data) {
   api.addNewCard(data)
@@ -127,9 +132,13 @@ function addCardFromForm(data) {
       const addCard = new Section({ items: oneCard, renderer: addOneCard }, '.cards');
       addCard.addItem(oneCard);
     })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      formAdd.closePopup();
+    })
 }
-
-//func for add one card
 
 function addOneCard(item) {
   const card = new Card(item, '#template__card', openPopupPicture, openPopupDelete, api, userId);
@@ -153,8 +162,6 @@ cardAdd.enableValidation();
 
 const formAvatarValidity = new FormValidator(objForValidity, formEditAvatar);
 formAvatarValidity.enableValidation();
-
-//test request
 
 api.getInfoAboutUser()
   .then((userStats) => {
