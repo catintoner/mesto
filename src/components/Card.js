@@ -40,6 +40,11 @@ export default class Card {
     this._like.classList.remove(this._statusLikeClass);
   }
 
+  _deleteCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
+  }
+
   _setEventListeners() {
     this._like.addEventListener('click', () => {
       this._handleLikeClick({
@@ -48,7 +53,7 @@ export default class Card {
       }, this._findOwnLike(), this._cardId);
     });
     this._cardElement.querySelector('.card__trash').addEventListener('click', (() => {
-      this._openPopupDelete(this._cardElement, this._cardId);
+      this._openPopupDelete(this._cardId, this._deleteCard.bind(this));
     }));
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick({ name: this._name, link: this._link });

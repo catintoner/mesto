@@ -23,14 +23,14 @@ export default class PopupWithDeleteCard extends Popup {
         return;
       }
       this.deleting = true;
-      this._deleteCard(this._cardElement, this._cardId);
+      this._deleteCard(this._cardId, this._deleteRenderCard);
     })
 
     super.setEventListeners();
   }
 
-  openPopup(cardElement, cardId) {
-    this._cardElement = cardElement;
+  openPopup(cardId, deleteRenderCard) {
+    this._deleteRenderCard = deleteRenderCard;
     this._cardId = cardId;
     super.openPopup();
   }
