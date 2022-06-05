@@ -5,13 +5,14 @@ export default class PopupWithDeleteCard extends Popup {
     super(popupSelector);
     this._deleteCard = deleteCard;
     this._buttonSubmitText = this._popup.querySelector('.popup__submit-btn');
+    this._defaultSubmitText = this._buttonSubmitText.textContent;
   }
 
-  isDeleting(isDeleting) {
-    if (isDeleting) {
-      this._buttonSubmitText.textContent = 'Удаление...';
+  renderDeleting(isLoading, buttonText) {
+    if (isLoading) {
+      this._buttonSubmitText.textContent = buttonText;
     } else {
-      this._buttonSubmitText.textContent = 'Удалить';
+      this._buttonSubmitText.textContent = this._defaultSubmitText;
     }
   }
 
@@ -28,14 +29,13 @@ export default class PopupWithDeleteCard extends Popup {
     super.setEventListeners();
   }
 
-  openPopup(evt, cardId) {
-    this._cardElement = evt.target.closest('.card');
+  openPopup(cardElement, cardId) {
+    this._cardElement = cardElement;
     this._cardId = cardId;
     super.openPopup();
   }
 
   closePopup() {
-    this.isDeleting(false);
     super.closePopup();
     this.deleting = false;
   }
